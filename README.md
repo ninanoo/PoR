@@ -7,6 +7,7 @@ PoR: Proof of Relevancy ( Blockchain Consensus Algorithm determined by Relevancy
 
 PoR is a blockchain consensus algorithm that the next block is determined by relevancy.
 The relevancy is obtained from the unique information of each block between adjacent blocks.
+The relevancy can also be created from the work of proof of work or the stake of proof of stake.
 Here, the asymmetric key pair of each block is used as the unique information.
 It uses a hash chain of Bitcoin, but has a double chain structure such as Bitcoin-NG.
 There are a key block chain and an auth block chain linked each other.
