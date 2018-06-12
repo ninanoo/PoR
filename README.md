@@ -19,7 +19,14 @@ High-speed processing is possible enough to generate each authentication block f
 
 <br/>
 
-## Relevancy Formula
+## Structure of Blocks and Chains
+
+<br/>
+
+## Relevancy and Consensus Mechanism
+
+### Relevancy Formula
+
 ![relevancyFormula](relevancyFormula.png?raw=true "relevancyFormula")
 ```
 r      : relevancy
@@ -28,3 +35,37 @@ n      : sequence number of candidate blocks starting with 0 ( n < c )
 m of n : number of consecutive bits with the same value as the previous hash value starting from the beginning
 a      : relevancy factor ( a > 1 )
 ```
+
+<br/>
+
+## Threshold Value and Relevancy Efficiency Ratio
+
+<br/>
+
+## Reverse Relevancy and Game Theory
+
+<br/>
+
+## Synchronization
+
+<br/>
+
+## Double Spending
+
+<br/>
+
+## 51% Attack and Localization
+
+<br/>
+
+## Branch of Chain
+
+<br/>
+
+## Proprietary Information
+
+<br/>
+
+## Scalability
+
+<br/>
