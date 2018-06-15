@@ -1,4 +1,4 @@
-###### ※ PoR is a new open blockchain consensus algorithm and is still theoretical.<br/><br/>I hope this algorithm will be discussed and improved with the people who study and develop the block chain.<br/><br/>If those who can handle nonlinear values well are involved, I think a complete mathematically provable algorithm will be created.<br/><br/>And I am looking for those who can help with the [Korean-English translation](https://github.com/ninanoo/PoR---Korean-Version/issues/1) of [Korean document](https://github.com/ninanoo/PoR---Korean-Version).
+###### ※ PoR is a new open blockchain consensus algorithm and is still theoretical.<br/><br/>I hope this algorithm will be discussed and improved with the people who study and develop the blockchain.<br/><br/>If those who can handle nonlinear values well are involved, I think a complete mathematically provable algorithm will be created.<br/><br/>And I am looking for those who can help with the [Korean-English translation](https://github.com/ninanoo/PoR---Korean-Version/issues/1) of [Korean document](https://github.com/ninanoo/PoR---Korean-Version).
 
 <br/>
 
@@ -36,13 +36,53 @@ m of n : number of consecutive bits with the same value as the previous hash val
 a      : relevancy factor ( a > 1 )
 ```
 
+### Relevancy Ratio Graph
+
+![relevancyRatio1](relevancyRatio1.png?raw=true "relevancyRatio1")
+
+![relevancyRatio2](relevancyRatio2.png?raw=true "relevancyRatio2")
+
+![relevancyRatio3](relevancyRatio3.png?raw=true "relevancyRatio3")
+
 <br/>
 
 ## Threshold Value and Relevancy Efficiency Ratio
 
+### Simulated Relevancy Formula
+
+![expectedRelevancyFormula](expectedRelevancyFormula.png?raw=true "expectedRelevancyFormula")
+```
+r      : relevancy
+c      : number of following blocks including the target block ( c > 0 )
+n      : sequence number of candidate blocks starting with 0 ( n < c )
+m of n : number of consecutive bits except the difficulty bits ( m > 0 )
+d      : difficulty bits ( d > 0 )
+a      : relevancy factor ( a > 1 )
+```
+
+### Relevancy Graph
+
+![relevancy1](relevancy1.png?raw=true "relevancy1")
+
+![relevancy2](relevancy2.png?raw=true "relevancy2")
+
 <br/>
 
 ## Reverse Relevancy and Game Theory
+
+### Relevancy Ratio Derivative Formula
+
+![relevancyRatioDerivativeFormula](relevancyRatioDerivativeFormula.png?raw=true "relevancyRatioDerivativeFormula")
+```
+d : derivative
+c : number of following blocks including the target block ( c > 0 )
+n : sequence number of candidate blocks starting with 0 ( n < c )
+a : relevancy factor ( a > 1 )
+```
+
+### Relevancy Ratio Derivative Graph
+
+![relevancyRatioDerivative](relevancyRatioDerivative.png?raw=true "relevancyRatioDerivative")
 
 <br/>
 
