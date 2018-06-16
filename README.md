@@ -40,15 +40,15 @@ a      : relevancy factor ( a > 1 )
 
 ### Relevancy Ratio Graph
 
-`a = 2 ^ 16` , `c = 10000`
+`a ^ (-n / c)` of `a = 2 ^ 16` , `c = 10000`
 
 ![relevancyRatio1](relevancyRatio1.png?raw=true "relevancyRatio1")
 
-`a = 2 ^ 16` , `c = 10, 100, 10000`
+`a ^ (-n / c)` of `a = 2 ^ 16` , `c = 10, 100, 10000`
 
 ![relevancyRatio2](relevancyRatio2.png?raw=true "relevancyRatio2")
 
-`c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+`a ^ (-n / c)` of `c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
 ![relevancyRatio3](relevancyRatio3.png?raw=true "relevancyRatio3")
 
@@ -94,7 +94,7 @@ a : relevancy factor ( a > 1 )
 
 ### Relevancy Ratio Derivative Graph
 
-`c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+`a ^ (-n / c)` of  `c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
 ![relevancyRatioDerivative](relevancyRatioDerivative.png?raw=true "relevancyRatioDerivative")
 
