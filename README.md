@@ -21,6 +21,8 @@ High-speed processing is possible enough to generate each authentication block f
 
 ## Structure of Blocks and Chains
 
+![blockAndChainDiagram](blockAndChainDiagram.png?raw=true "blockAndChainDiagram")
+
 <br/>
 
 ## Relevancy and Consensus Mechanism
@@ -38,9 +40,15 @@ a      : relevancy factor ( a > 1 )
 
 ### Relevancy Ratio Graph
 
+`a = 2 ^ 16` , `c = 10000`
+
 ![relevancyRatio1](relevancyRatio1.png?raw=true "relevancyRatio1")
 
+`a = 2 ^ 16` , `c = 10, 100, 10000`
+
 ![relevancyRatio2](relevancyRatio2.png?raw=true "relevancyRatio2")
+
+`c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
 ![relevancyRatio3](relevancyRatio3.png?raw=true "relevancyRatio3")
 
@@ -62,7 +70,11 @@ a      : relevancy factor ( a > 1 )
 
 ### Relevancy Graph
 
+`d = 8` , `m = 8` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+
 ![relevancy1](relevancy1.png?raw=true "relevancy1")
+
+`d = 8` , `m = 12` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
 ![relevancy2](relevancy2.png?raw=true "relevancy2")
 
@@ -82,6 +94,8 @@ a : relevancy factor ( a > 1 )
 
 ### Relevancy Ratio Derivative Graph
 
+`c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+
 ![relevancyRatioDerivative](relevancyRatioDerivative.png?raw=true "relevancyRatioDerivative")
 
 <br/>
@@ -95,10 +109,6 @@ a : relevancy factor ( a > 1 )
 <br/>
 
 ## 51% Attack and Localization
-
-<br/>
-
-## Branch of Chain
 
 <br/>
 
