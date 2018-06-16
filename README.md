@@ -63,7 +63,7 @@ a      : relevancy factor ( a > 1 )
 r      : relevancy
 c      : number of following blocks including the target block ( c > 0 )
 n      : sequence number of candidate blocks starting with 0 ( n < c )
-m of n : number of consecutive bits except the difficulty bits ( m > 0 )
+m of n : maximum number of consecutive bits except the difficulty bits ( m > 0 )
 d      : difficulty bits ( d > 0 )
 a      : relevancy factor ( a > 1 )
 ```
