@@ -131,6 +131,10 @@ a : relevancy factor ( a > 1 )
 
 <br/>
 
+## Compensation for Effort
+
+<br/>
+
 ## Scalability
 
 <br/>
