@@ -47,7 +47,7 @@ The candidate block that is generated first among the candidate blocks becomes t
 All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevancy.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding key block and the hash value of the last confirmed authentication block at the time of addition.
 
-The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusive authentication blocks containing exclusion information for key blocks excluded from the key block chain.
+The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusive authentication blocks containing exclusion information for key blocks excluded from the authentication generation.
 Ledger authentication blocks are again divided into blocks that have been confirmed and one unconfirmed block that have been created most recently.
 Ledger authentication blocks contain the sequence number of the associated key block and the authentication information of the ledgers to authenticate.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding authentication block and the hash value of the associated key block.
