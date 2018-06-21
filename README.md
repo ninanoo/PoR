@@ -78,7 +78,19 @@ This ensures that the front part of the hash value of all blocks remains the sam
 The proprietary information is actually analogous to the nonce of PoW in view of the fact that it find a specific hash value through a single element that can change its value.
 But here the consensus in the network continues to find the unique and fixed nonce per node, not the nonce that can be changed.
 
+In fact, the relevancy of a block is determined by accumulating the relevancy of all blocks following the block, including itself.
+Relevancy to subsequent blocks is multiplied by a decreasing exponential distribution in the order in which they are added to the chain.
+This makes the chain more deterministic by making the number of replacements smaller for the former blocks.
+Even if it is not the end of the chain, if the relevancy is higher than the existing block, block to be added can replace the existing block and subsequent blocks of existing block are also discarded.
+Conversely, even if the self relevancy of the block to be added is relatively low, if a number of blocks follow, even existing block that have better self relevancy can lose in the competition.
+With relevancy, the sooner a block join the consensus, the more likely a block is to be selected.
+In order to numerically control this, a relevancy formula, which is calculated as the decrease rate of exponential form, and a relevancy factor for it is used.
+The total relevancy is getting higher, and at the same time the consensus continues to be made so that the number of blocks is smaller.
+It is filled with blocks having sufficient relevancy from the front part of the chain, and most of the actual transactions occur only in the blocks behind the chain.
+
 ### Relevancy Formula
+
+Below is a formula that calculates the relevancy of a block.
 
 ![relevancyFormula](relevancyFormula.png?raw=true "relevancyFormula")
 ```
