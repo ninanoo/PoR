@@ -11,11 +11,11 @@ The relevancy is obtained from the proprietary information of each block between
 The relevancy can also be created from the work of PoW or the stake of PoS.
 In this document, the asymmetric key pair of each block used to generate the signature is also used as the proprietary information.
 
-It uses a hash chain of Bitcoin, but has a double chain structure such as Bitcoin-NG.
+It uses a hash chain of Bitcoin, but has a dual chain structure such as Bitcoin-NG.
 There are a key block chain and an authentication block chain linked each other.
 In the key block chain, a candidate that can generate an authentication through consensus is registered.
 In the authentication block chain, the authentication for a ledger is registered.
-With the use of a double chain, the registered candidate can generate a real authentication after a very long time and there is also competition at that time.
+With the use of a dual chain, the registered candidate can generate a real authentication after a very long time and there is also competition at that time.
 
 Relevancy is used for competition to be registered as a candidate to generate an authentication.
 Reverse relevancy is used for competition to create real authentication.
@@ -25,18 +25,38 @@ This prevents problems such as 'nothing at stake'.
 It is not the computational complexity that simply solves the hash, but there are numerical parts related to the operation of the algorithm such as many candidate blocks or very large threshold value, and they are all designed based on computational complexity theory.
 As a result, all attacks on the algorithm are probabilistically impossible.
 
-Due to the use of the double chain with attributes such as relevancy, reverse relevancy, and the threshold value for generating authentication block, the authentication for the ledger operates deterministically.
+Due to the use of the dual chain with attributes such as relevancy, reverse relevancy, and the threshold value for generating authentication block, the authentication for the ledger operates deterministically.
 Attacks such as double spending or finney attack do not occur because authentication to the ledger is deterministic.
 
 Due to the use of proprietary information, it is more resistant than bitcoin against 51% attack and localization problems.
 High-speed processing is possible enough to generate each authentication block for the unit ledgers without the use of merkle tree depending on the size of the network.
-There may be one reward for participation of a majority of legitimate users, but there are no rewards for the functional behavior of the algorithm.
+There may be one reward for the participation of a majority of legitimate users, but there are no rewards for the functional behavior of the algorithm.
 
 <br/>
 
 ## Structure of Blocks and Chains
 
+The figure below shows the enlarged view of the last generated authentication block and its surrounding blocks in the entire dual chain.
+The upper side is the key block chain and the lower side is the authentication block chain.
+
 ![blockAndChainDiagram](blockAndChainDiagram.png?raw=true "blockAndChainDiagram")
+
+Most of the key block chain consists of blocks that have generated authentication blocks and blocks that have been decided as blocks for generating authentication blocks but are excluded by following blocks due to malicious purposes or network failures.
+The candidate block that is generated first among the candidate blocks becomes the leader block.
+All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevancy.
+And they also include a new hash value created by combining these information with the hash value of the immediately preceding key block and the hash value of the last confirmed authentication block at the time of addition.
+
+The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusive authentication blocks containing exclusion information for key blocks excluded from the key block chain.
+Ledger authentication blocks are again divided into blocks that have been confirmed and one unconfirmed block that have been created most recently.
+Ledger authentication blocks contain the sequence number of the associated key block and the authentication information of the ledgers to authenticate.
+And they also include a new hash value created by combining these information with the hash value of the immediately preceding authentication block and the hash value of the associated key block.
+Exclusive authentication blocks contain the sequence number of the excluded key block and the sequence number of the key block that excluded it and the related exclusion information.
+And they also include a new hash value created by combining these information with the hash value of the immediately preceding authentication block and the hash value of the excluded key block and The hash value of the key block that excluded it.
+
+The sequence numbers of the key block chain and the authentication block chain are incremented in the same order.
+All key blocks with sequence numbers greater than the sequence number of the last block in the authentication block chain are all candidate blocks.
+The certification for the actual ledger is proceeded by candidate blocks added to the chain through consensus after a very long time.
+The use of a dual chain structure provides both entity authentication for block itself added before a very long time ago and integrity to the authentication of the ledger.
 
 <br/>
 
