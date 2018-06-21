@@ -42,6 +42,7 @@ The upper side is the key block chain and the lower side is the authentication b
 ![blockAndChainDiagram](blockAndChainDiagram.png?raw=true "blockAndChainDiagram")
 
 Most of the key block chain consists of blocks that have generated authentication blocks and blocks that have been decided as blocks for generating authentication blocks but are excluded by following blocks due to malicious purposes or network failures.
+The back part of the key block chain consists of candidate blocks for generating the authentication block.
 The candidate block that is generated first among the candidate blocks becomes the leader block.
 All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevancy.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding key block and the hash value of the last confirmed authentication block at the time of addition.
