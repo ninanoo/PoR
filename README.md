@@ -47,11 +47,11 @@ The candidate block that is generated first among the candidate blocks becomes t
 All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevance.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding key block and the hash value of the last confirmed authentication block at the time of addition.
 
-The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusive authentication blocks containing exclusion information for key blocks excluded from the authentication generation.
+The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusion authentication blocks containing exclusion information for key blocks excluded from the authentication generation.
 Ledger authentication blocks are again divided into blocks that have been confirmed and one unconfirmed block that have been created most recently.
 Ledger authentication blocks contain the sequence number of the associated key block and the authentication information of the ledgers to authenticate.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding authentication block and the hash value of the associated key block.
-Exclusive authentication blocks contain the sequence number of the excluded key block and the sequence number of the key block that excluded it and the related exclusion information.
+Exclusion authentication blocks contain the sequence number of the excluded key block and the sequence number of the key block that excluded it and the related exclusion information.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding authentication block and the hash value of the excluded key block and The hash value of the key block that excluded it.
 
 The sequence numbers of the key block chain and the authentication block chain are incremented in the same order.
@@ -221,7 +221,36 @@ If the consumption of the leader blocks is very fast, the base values should be 
 
 ## Reverse Relevance and Game Theory
 
+There may be a situation in which the distribution of the ledger authentication block of the leader block satisfying the threshold value is delayed due to malicious purpose or network failure.
+For this, all key blocks have a reverse relevance.
+The relevance for consensus is the cumulative value of the blocks following in the chain, but the reverse relevance is calculated by the immediately preceding block as the cumulative value of the previous blocks in the opposite direction.
+The candidate blocks calculate the reverse relevance of all previous candidate blocks by applying the `c` value used to calculate their own relevance.
+The next block of the block satisfying the threshold value compares its relevance with the reverse relevance of the previous block.
+If its own relevance satisfies the threshold value before the distributed new ledger authentication block is received and its own forward relevance is greater than the reverse relevance of the previous block, the previous block is processed as the excluded block and it generates and distributes the ledger authentication block.
+The exclusion authentication block and the ledger authentication block are distributed together, and then other nodes accept or reject them after checking the relevant information.
+If the ledger authentication block is not distributed in the second block, the third block distributes the ledger authentication block if the condition is satisfied in the same way for both the first and second blocks.
+The blocks corresponding to approximately `1 / 10` from the beginning of the candidate blocks have the right to exclude the previous candidate blocks in the same way.
+
+All previous blocks, that are cumulatively calculated in the reverse relevance, have high self relevance through a sufficient diffusion and convergence process in the network.
+However, if there is a delay in the distribution of the authentication block, the candidate blocks at the back of the chain increase the relevance only by the replacement without addition, so the value of `c` is getting lower and the reverse relevance of the previous blocks is also lowered.
+This causes the reverse relevance to urge the reader block, which is satisfied with the threshold, to issue the authentication block as soon as possible.
+From the beginning of the candidate blocks, the blocks corresponding to approximately `1 / 10` are all in the same situation.
+
+The exact number of blocks that have the right to exclude is determined by the relevance factor.
+In the graph of relevance ratio, blocks having a meaningful magnification not close to `0` correspond to this.
+This is related to the derivative of the relevance ratio curve.
+
+### Relevance Ratio Derivative Graph
+
+The following graph shows the relevance ratio curves for each of the relevance factors and curves for their derivatives.
+
+![relevanceRatioDerivative](relevanceRatioDerivative.png?raw=true "relevanceRatioDerivative")
+
+
+
 ### Relevance Ratio Derivative Formula
+
+
 
 ![relevanceRatioDerivativeFormula](relevanceRatioDerivativeFormula.png?raw=true "relevanceRatioDerivativeFormula")
 ```
@@ -231,11 +260,8 @@ n : sequence number of candidate blocks starting with 0 ( n < c )
 a : relevance factor ( a > 1 )
 ```
 
-### Relevance Ratio Derivative Graph
 
-`a ^ (-n / c)` of  `c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
-![relevanceRatioDerivative](relevanceRatioDerivative.png?raw=true "relevanceRatioDerivative")
 
 <br/>
 
