@@ -170,15 +170,34 @@ d : number of difficulty bits ( d > 0 )
 a : relevance factor ( a > 1 )
 ```
 
+The self relevance of each block is distributed as a uniform rate of the added order from the `m` bit of the first following block to the `m / c` bit of the last block, including the difficulty.
+It assumes that the sooner a block is added, the more consensus it will take for a long time, and the more recently created block is satisfied with the degree of difficulty.
+However, the actual number of matched bits and their distribution are determined by the network environment and the base values of the algorithm.
+For a accurate experiment for this, a testnet configuration or software simulation close to the actual environment should be performed.
+
 ### Relevance Graph
 
-`d = 8` , `m = 8` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+The following is a graph of relevance when `d` is `8` and `m` is `8` in the above simulated relevance formula.
+Relevance factors of `2 ^ 2`, `2 ^ 4`, `2 ^ 8`, `2 ^ 16`, and `2 ^ 32` are used from the top.
 
 ![relevance1](relevance1.png?raw=true "relevance1")
 
-`d = 8` , `m = 12` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+
+
+
+
+
+
+
+
 
 ![relevance2](relevance2.png?raw=true "relevance2")
+
+
+
+
+
+
 
 <br/>
 
