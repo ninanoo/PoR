@@ -182,14 +182,19 @@ Relevance factors of `2 ^ 2`, `2 ^ 4`, `2 ^ 8`, `2 ^ 16`, and `2 ^ 32` are used 
 
 ![relevance1](relevance1.png?raw=true "relevance1")
 
+Through the above graph, the number of blocks that follow to satisfy a specific threshold value for each relevancy factor can be roughly checked.
+For a graph using the relevance factor of `2 ^ 16`, `10000` blocks are needed to have the relevance of `2 ^ 25`.
+A new block must have `25` or more matching bits in order to replace an existing block with a relevance of `2 ^ 25`.
+This can be compared to the work of the PoW.
+The effort to find a hash with successive `0`s in the PoW works in the same logic as the effort to find a hash value that matches the previous hash value in the PoR.
+The PoW consumes the system resources of each node for a short period of time to find the hash value satisfying the condition.
+In the PoR, the network resources are consumed for a very long time to find the most suitable hash value among the unique hash values owned by the nodes.
+The PoW consumes system resources uniformly in all mining nodes for the entire time of finding the hash value.
+However, in the PoR, the transactions occur only for a short period of time, usually immediately after the block is added, in the entire time
+The number of matched bits that can be safely used for each relevancy factor must be determined, and the threshold value determined accordingly.
+To do this, each base value in the PoR must be determined according to the security attributes of the already verified PoW.
 
-
-
-
-
-
-
-
+The following graph shows the relevance graph when the `m` is` 12` using the same difficulty as the graph above.
 
 ![relevance2](relevance2.png?raw=true "relevance2")
 
@@ -246,4 +251,4 @@ a : relevance factor ( a > 1 )
 <br/>
 
 
-###### ※ This algorithm was not designed for the purposes of ICO.<br/>Coin issuance may be required to raise money needed to implement and validate the algorithm.<br/>Even if a coin is issued, it should be aimed at the proof of concept of the algorithm, not profit.<br/>Compensation schemes are needed and follow the methods of other smart contract algorithms.<br/>I hope this algorithm solves many of the problems associated with the blockchain, so that the block chain technology is activated.
+###### ※ This algorithm was not designed for the purposes of ICO.<br/>Coin issuance may be required to raise money needed to implement and validate the algorithm.<br/>Even if a coin is issued, it should be aimed at the proof of concept of the algorithm, not profit.<br/>Compensation schemes are needed and follow the methods of other smart contract algorithms.<br/>I hope this algorithm solves many of the problems associated with the blockchain, so that the blockchain technology is activated.
