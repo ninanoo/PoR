@@ -183,7 +183,7 @@ Relevance factors of `2 ^ 2`, `2 ^ 4`, `2 ^ 8`, `2 ^ 16`, and `2 ^ 32` are used 
 ![relevance1](relevance1.png?raw=true "relevance1")
 
 Through the above graph, the number of blocks that follow to satisfy a specific threshold value for each relevancy factor can be roughly checked.
-For a graph using the relevance factor of `2 ^ 16`, `10000` blocks are needed to have the relevance of `2 ^ 25`.
+For a graph using the relevance factor of `2 ^ 16`, `10000` blocks are needed to have the relevance of approximately `2 ^ 25`.
 A new block must have `25` or more matching bits in order to replace an existing block with a relevance of `2 ^ 25`.
 This can be compared to the work of the PoW.
 The effort to find a hash with successive `0`s in the PoW works in the same logic as the effort to find a hash value that matches the previous hash value in the PoR.
@@ -198,11 +198,24 @@ The following graph shows the relevance graph when the `m` is` 12` using the sam
 
 ![relevance2](relevance2.png?raw=true "relevance2")
 
+In the case of a graph using the relevance factor of `2 ^ 16`, `1000` blocks are needed to have the relevance of approximately `2 ^ 25`.
+When the number of matched bits increases by `4` bits, the number of blocks required is reduced to `1 / 10`.
+To reduce the number of blocks needed to meet the threshold, there is a way to reduce the threshold value or use a smaller relevance factor.
+However, they all weaken the deterministic characteristic of the algorithm.
+It may be conceivable to use a larger degree of difficulty to increase the number of matched bits, but this does not match the algorithm's default behavior.
+The algorithm does not place much constraint on adding new block to the chain.
+The lower the level of difficulty, the more blocks are added to the chain more quickly, which makes the reader block able to issue authentication block faster.
+It takes a very long time for the newly added block to issue the authentication, and the relevance efficiency ratio becomes sufficiently high during this time.
+Difficulty is not for relevance, only to reduce consumable behavior on the network.
 
-
-
-
-
+Due to very high threshold, relevance factor, and the use of exponentially decrementing cumulative value, a large number of blocks are required to satisfy the threshold at any one point.
+As a result, when the key block chain is first created on the network, the first leader block must have enough time to satisfy the threshold.
+However, the threshold value can be satisfied even if only one node is added when the blocks after the first block become the leader block.
+At the moment of becoming a leader block, the threshold may already be met.
+This is because only one block out of many blocks is excluded from the relevance calculation.
+This enables faster processing of authentication block generation.
+Merkle tree can be used, but depending on the size of the network, one block can be used for one ledger in performance.
+If the consumption of the leader blocks is very fast, the base values should be raised so that sufficient relevance efficiency ratio is maintained at the lower end.
 
 <br/>
 
