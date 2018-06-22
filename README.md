@@ -242,15 +242,15 @@ This is related to the derivative of the relevance ratio curve.
 
 ### Relevance Ratio Derivative Graph
 
-The following graph shows the relevance ratio curves for each of the relevance factors and curves for their derivatives.
+The following graph shows the relevance ratio curves for each of the relevance factors and the curves for their derivatives.
 
 ![relevanceRatioDerivative](relevanceRatioDerivative.png?raw=true "relevanceRatioDerivative")
 
-
+The top is the relevance ratio curves for each relevance factor, and the bottom is the variation curves for `n / c` of each curve.
 
 ### Relevance Ratio Derivative Formula
 
-
+Below is the formula used to calculate the derivative.
 
 ![relevanceRatioDerivativeFormula](relevanceRatioDerivativeFormula.png?raw=true "relevanceRatioDerivativeFormula")
 ```
@@ -260,8 +260,15 @@ n : sequence number of candidate blocks starting with 0 ( n < c )
 a : relevance factor ( a > 1 )
 ```
 
+Clear relationships have not yet been found by the analysis of the primary variation.
+So, at this time, approximate values are used for each relevancy factor.
+In the case of the graph using the relevance factor of `2 ^ 16`, the blocks corresponding to approximately `1 / 10` are considered from the beginning of the candidate blocks.
+However, in actual implementation, it should be set high enough to match the physical environment of the entire network or the level of security required.
 
-
+There may be a situation where all blocks corresponding to `1 / 10` are disabled.
+All of the blocks corresponding to `1 / 10` were selected through continuous competition based on hash values with random distribution, assuming a majority of legitimate users.
+The number of blocks corresponding to this `1 / 10` is `1000` from the small value of `100` depending on the network size.
+Therefore, the situation in which the algorithm stops is probabilistically impossible.
 
 <br/>
 
