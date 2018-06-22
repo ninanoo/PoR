@@ -101,19 +101,47 @@ m of n : number of consecutive bits with the same value as the previous hash val
 a      : relevancy factor ( a > 1 )
 ```
 
+The `r` as the cumulative relevancy of `0`th block with `n = 0` is followed by subsequent blocks with a number of `c - 1`.
+`2 ^ m` is the self relevancy of each `n`th subsequent block.
+`a ^ (-n / c)` is the relevancy ratio of each `n`th subsequent block.
+The relevancy ratio of the `0`th block to calculate the cumulative relevancy is always `1`, and the cumulative relevancy is equal to self relevancy if there are no following blocks.
+The relevancy of each subsequent block is multiplied by its relevancy ratio, and the sum of all these values is the relevancy of any one block.
+Each of the candidate blocks in the chain, while making themselves a `0`th block, calculates the relevancy through the above calculation formula.
+
 ### Relevancy Ratio Graph
 
-`a ^ (-n / c)` of `a = 2 ^ 16` , `c = 10000`
+Below is the relevancy ratio graph of `(2 ^ 16) ^ (-n / 10000)`.
 
 ![relevancyRatio1](relevancyRatio1.png?raw=true "relevancyRatio1")
 
-`a ^ (-n / c)` of `a = 2 ^ 16` , `c = 10, 100, 10000`
+The graph above uses `2 ^ 16` as the relevancy factor `a` and is currently followed by `10000 - 1` subsequent blocks.
+The blocks added before the `5000`th corresponding to half of the blocks start to have a meaningful value, and the blocks added before the `100`th corresponding to 1% have a value of `0.9` or more.
+
+Here are the relevancy ratio graphs when `c` is `10`, `100`, and `10000` using `2 ^ 16` as a relevancy factor.
+As a graph that shows the characteristics of `n / c`, the relevancy ratio of each subsequent block is a constant ratio to the position of each block relative to the total number of subsequent blocks.
 
 ![relevancyRatio2](relevancyRatio2.png?raw=true "relevancyRatio2")
 
-`a ^ (-n / c)` of `c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
+When the number of blocks is `10`, the relevancy ratio of `9`th block is close to `0`.
+When subsequent blocks are added to this block and the number of blocks becomes `100`, the relevancy ratio of the `9`th block has a value close to `0.4`.
+When subsequent blocks are added again and the number of blocks becomes `10000`, it has a value close to `1`.
+As more subsequent blocks are added to one subsequent block, the position in the curve of the block continues to move leftward, and the relevancy ratio increases exponentially.
+
+Here is the relevancy ratio graph of `a ^ (-n / 10000)`.
+From the top curve, we use the relevancy factors of `2 ^ 2`,` 2 ^ 4`, `2 ^ 8`,` 2 ^ 16`, and `2 ^ 32`.
 
 ![relevancyRatio3](relevancyRatio3.png?raw=true "relevancyRatio3")
+
+As you can see in the graph, the larger the relevancy factor, the greater the decrease in the relevancy ratio, which decreases exponentially.
+As a result, the larger the relevancy factor is used, the smaller the cumulative relevancy, but the chain is more deterministic.
+
+In the bitcoin's PoW, the occurrence of a branch in the chain is considered a collision situation and the longest chain is selected.
+In the proof of relevancy, the occurrence of a branch in the chain is considered to be the process by which the algorithm operates.
+A chain with a higher value is selected by comparing the relevancy of the block where the branch occurred.
+The `m` value satisfying the difficulty is used to avoid unnecessary branching of small units.
+Branches occur frequently in the chain, which is a significant portion of the consensus process, but mostly only in the blocks behind the chain.
+To guarantee this, the threshold for generating an authentication block must be set high enough.
+This is determined by the physical environment of the entire network in which the chain is operating and the required performance expectations.
 
 <br/>
 
