@@ -2,13 +2,13 @@
 
 <br/>
 
-# PoR ( Proof of Relevancy )
+# PoR ( Proof of Relevance )
 
-### Blockchain Consensus Algorithm determined by Relevancy
+### Blockchain Consensus Algorithm determined by Relevance
 
-PoR is a blockchain consensus algorithm that the next block is determined by relevancy.
-The relevancy is obtained from the proprietary information of each block between adjacent blocks.
-The relevancy can also be created from the work of PoW or the stake of PoS.
+PoR is a blockchain consensus algorithm that the next block is determined by relevance.
+The relevance is obtained from the proprietary information of each block between adjacent blocks.
+The relevance can also be created from the work of PoW or the stake of PoS.
 In this document, the asymmetric key pair of each block used to generate the signature is also used as the proprietary information.
 
 It uses a hash chain of Bitcoin, but has a dual chain structure such as Bitcoin-NG.
@@ -17,15 +17,15 @@ In the key block chain, a candidate that can generate an authentication through 
 In the authentication block chain, the authentication for a ledger is registered.
 With the use of a dual chain, the registered candidate can generate a real authentication after a very long time and there is also competition at that time.
 
-Relevancy is used for competition to be registered as a candidate to generate an authentication.
-Reverse relevancy is used for competition to create real authentication.
-Both competing situations are competition for time based on relevancy and they are all for personal benefit.
+Relevance is used for competition to be registered as a candidate to generate an authentication.
+Reverse relevance is used for competition to create real authentication.
+Both competing situations are competition for time based on relevance and they are all for personal benefit.
 This prevents problems such as 'nothing at stake'.
 
 It is not the computational complexity that simply solves the hash, but there are numerical parts related to the operation of the algorithm such as many candidate blocks or very large threshold value, and they are all designed based on computational complexity theory.
 As a result, all attacks on the algorithm are probabilistically impossible.
 
-Due to the use of the dual chain with attributes such as relevancy, reverse relevancy, and the threshold value for generating authentication block, the authentication for the ledger operates deterministically.
+Due to the use of the dual chain with attributes such as relevance, reverse relevance, and the threshold value for generating authentication block, the authentication for the ledger operates deterministically.
 Attacks such as double spending or finney attack do not occur because authentication to the ledger is deterministic.
 
 Due to the use of proprietary information, it is more resistant than bitcoin against 51% attack and localization problems.
@@ -44,7 +44,7 @@ The upper side is the key block chain and the lower side is the authentication b
 Most of the key block chain consists of blocks that have generated authentication blocks and blocks that have been decided as blocks for generating authentication blocks but are excluded by following blocks due to malicious purposes or network failures.
 The back part of the key block chain consists of candidate blocks for generating the authentication block.
 The candidate block that is generated first among the candidate blocks becomes the leader block.
-All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevancy.
+All key blocks contain the own sequence number and the sequence number of the last confirmed authentication block at the time of addition and the proprietary information needed to calculate relevance.
 And they also include a new hash value created by combining these information with the hash value of the immediately preceding key block and the hash value of the last confirmed authentication block at the time of addition.
 
 The authentication block chain consists of the ledger authentication blocks containing the authentication information of the ledgers and the exclusive authentication blocks containing exclusion information for key blocks excluded from the authentication generation.
@@ -61,12 +61,12 @@ The use of a dual chain structure provides both entity authentication for block 
 
 <br/>
 
-## Relevancy and Consensus Mechanism
+## Relevance and Consensus Mechanism
 
 Candidate blocks to be newly added reach a consensus as the block most relevant to the previous block as they go through a continuous diffusion and convergence process in the network.
 Every blockchain algorithm uses a pair of public and private keys to generate a signature for the ledger.
 Here, the pair of public and private keys is used not only for signature generation purpose, but also as a proprietary key, which is proprietary information.
-The self relevancy of a block is generated by the number of consecutive matching bits by comparing the hash value of the immediately preceding block with the public key value in bit-by-bit order from the start bit.
+The self relevance of a block is generated by the number of consecutive matching bits by comparing the hash value of the immediately preceding block with the public key value in bit-by-bit order from the start bit.
 To reduce unnecessary competition on the network, it has a similar difficulty to that of PoW.
 The difficulty is the minimum number of bits that must be matched and is not intended to be a proof of work.
 
@@ -78,66 +78,66 @@ This ensures that the front part of the hash value of all blocks remains the sam
 The proprietary information is actually analogous to the nonce of PoW in view of the fact that it find a specific hash value through a single element that can change its value.
 But here the consensus in the network continues to find the unique and fixed nonce per node, not the nonce that can be changed.
 
-In fact, the relevancy of a block is determined by accumulating the relevancy of all blocks following the block, including itself.
-Relevancy to subsequent blocks is multiplied by a decreasing exponential distribution in the order in which they are added to the chain.
+In fact, the relevance of a block is determined by accumulating the relevance of all blocks following the block, including itself.
+Relevance to subsequent blocks is multiplied by a decreasing exponential distribution in the order in which they are added to the chain.
 This makes the chain more deterministic by making the number of replacements smaller for the former blocks.
-Even if it is not the end of the chain, if the relevancy is higher than the existing block, block to be added can replace the existing block and subsequent blocks of existing block are also discarded.
-Conversely, even if the self relevancy of the block to be added is relatively low, if a number of blocks follow, even existing block that have better self relevancy can lose in the competition.
-With relevancy, the sooner a block join the consensus, the more likely a block is to be selected.
-In order to numerically control this, a relevancy formula, which is calculated as the decrease rate of exponential form, and a relevancy factor for it is used.
-The total relevancy is getting higher, and at the same time the consensus continues to be made so that the number of blocks is smaller.
-It is filled with blocks having sufficient relevancy from the front part of the chain, and most of the actual transactions occur only in the blocks behind the chain.
+Even if it is not the end of the chain, if the relevance is higher than the existing block, block to be added can replace the existing block and subsequent blocks of existing block are also discarded.
+Conversely, even if the self relevance of the block to be added is relatively low, if a number of blocks follow, even existing block that have better self relevance can lose in the competition.
+With relevance, the sooner a block join the consensus, the more likely a block is to be selected.
+In order to numerically control this, a relevance formula, which is calculated as the decrease rate of exponential form, and a relevance factor for it is used.
+The total relevance is getting higher, and at the same time the consensus continues to be made so that the number of blocks is smaller.
+It is filled with blocks having sufficient relevance from the front part of the chain, and most of the actual transactions occur only in the blocks behind the chain.
 
-### Relevancy Formula
+### Relevance Formula
 
-Below is a formula that calculates the relevancy of a block.
+Below is a formula that calculates the relevance of a block.
 
-![relevancyFormula](relevancyFormula.png?raw=true "relevancyFormula")
+![relevanceFormula](relevanceFormula.png?raw=true "relevanceFormula")
 ```
-r      : relevancy
+r      : relevance
 c      : number of following blocks including the target block ( c > 0 )
 n      : sequence number of candidate blocks starting with 0 ( n < c )
 m of n : number of consecutive bits with the same value as the previous hash value starting from the beginning
-a      : relevancy factor ( a > 1 )
+a      : relevance factor ( a > 1 )
 ```
 
-The `r` as the cumulative relevancy of `0`th block with `n = 0` is followed by subsequent blocks with a number of `c - 1`.
-`2 ^ m` is the self relevancy of each `n`th subsequent block.
-`a ^ (-n / c)` is the relevancy ratio of each `n`th subsequent block.
-The relevancy ratio of the `0`th block to calculate the cumulative relevancy is always `1`, and the cumulative relevancy is equal to self relevancy if there are no following blocks.
-The relevancy of each subsequent block is multiplied by its relevancy ratio, and the sum of all these values is the relevancy of any one block.
-Each of the candidate blocks in the chain, while making themselves a `0`th block, calculates the relevancy through the above calculation formula.
+The `r` as the cumulative relevance of `0`th block with `n = 0` is followed by subsequent blocks with a number of `c - 1`.
+`2 ^ m` is the self relevance of each `n`th subsequent block.
+`a ^ (-n / c)` is the relevance ratio of each `n`th subsequent block.
+The relevance ratio of the `0`th block to calculate the cumulative relevance is always `1`, and the cumulative relevance is equal to self relevance if there are no following blocks.
+The relevance of each subsequent block is multiplied by its relevance ratio, and the sum of all these values is the relevance of any one block.
+Each of the candidate blocks in the chain, while making themselves a `0`th block, calculates the relevance through the above calculation formula.
 
-### Relevancy Ratio Graph
+### Relevance Ratio Graph
 
-Below is the relevancy ratio graph of `(2 ^ 16) ^ (-n / 10000)`.
+Below is the relevance ratio graph of `(2 ^ 16) ^ (-n / 10000)`.
 
-![relevancyRatio1](relevancyRatio1.png?raw=true "relevancyRatio1")
+![relevanceRatio1](relevanceRatio1.png?raw=true "relevanceRatio1")
 
-The graph above uses `2 ^ 16` as the relevancy factor `a` and is currently followed by `10000 - 1` subsequent blocks.
+The graph above uses `2 ^ 16` as the relevance factor `a` and is currently followed by `10000 - 1` subsequent blocks.
 The blocks added before the `5000`th corresponding to half of the blocks start to have a meaningful value, and the blocks added before the `100`th corresponding to 1% have a value of `0.9` or more.
 
-Here are the relevancy ratio graphs when `c` is `10`, `100`, and `10000` using `2 ^ 16` as a relevancy factor.
-As a graph that shows the characteristics of `n / c`, the relevancy ratio of each subsequent block is a constant ratio to the position of each block relative to the total number of subsequent blocks.
+Here are the relevance ratio graphs when `c` is `10`, `100`, and `10000` using `2 ^ 16` as a relevance factor.
+As a graph that shows the characteristics of `n / c`, the relevance ratio of each subsequent block is a constant ratio to the position of each block relative to the total number of subsequent blocks.
 
-![relevancyRatio2](relevancyRatio2.png?raw=true "relevancyRatio2")
+![relevanceRatio2](relevanceRatio2.png?raw=true "relevanceRatio2")
 
-When the number of blocks is `10`, the relevancy ratio of `9`th block is close to `0`.
-When subsequent blocks are added to this block and the number of blocks becomes `100`, the relevancy ratio of the `9`th block has a value close to `0.4`.
+When the number of blocks is `10`, the relevance ratio of `9`th block is close to `0`.
+When subsequent blocks are added to this block and the number of blocks becomes `100`, the relevance ratio of the `9`th block has a value close to `0.4`.
 When subsequent blocks are added again and the number of blocks becomes `10000`, it has a value close to `1`.
-As more subsequent blocks are added to one subsequent block, the position in the curve of the block continues to move leftward, and the relevancy ratio increases exponentially.
+As more subsequent blocks are added to one subsequent block, the position in the curve of the block continues to move leftward, and the relevance ratio increases exponentially.
 
-Here is the relevancy ratio graph of `a ^ (-n / 10000)`.
-From the top curve, we use the relevancy factors of `2 ^ 2`,` 2 ^ 4`, `2 ^ 8`,` 2 ^ 16`, and `2 ^ 32`.
+Here is the relevance ratio graph of `a ^ (-n / 10000)`.
+From the top curve, we use the relevance factors of `2 ^ 2`,` 2 ^ 4`, `2 ^ 8`,` 2 ^ 16`, and `2 ^ 32`.
 
-![relevancyRatio3](relevancyRatio3.png?raw=true "relevancyRatio3")
+![relevanceRatio3](relevanceRatio3.png?raw=true "relevanceRatio3")
 
-As you can see in the graph, the larger the relevancy factor, the greater the decrease in the relevancy ratio, which decreases exponentially.
-As a result, the larger the relevancy factor is used, the smaller the cumulative relevancy, but the chain is more deterministic.
+As you can see in the graph, the larger the relevance factor, the greater the decrease in the relevance ratio, which decreases exponentially.
+As a result, the larger the relevance factor is used, the smaller the cumulative relevance, but the chain is more deterministic.
 
 In the bitcoin's PoW, the occurrence of a branch in the chain is considered a collision situation and the longest chain is selected.
-In the proof of relevancy, the occurrence of a branch in the chain is considered to be the process by which the algorithm operates.
-A chain with a higher value is selected by comparing the relevancy of the block where the branch occurred.
+In the proof of relevance, the occurrence of a branch in the chain is considered to be the process by which the algorithm operates.
+A chain with a higher value is selected by comparing the relevance of the block where the branch occurred.
 The `m` value satisfying the difficulty is used to avoid unnecessary branching of small units.
 Branches occur frequently in the chain, which is a significant portion of the consensus process, but mostly only in the blocks behind the chain.
 To guarantee this, the threshold for generating an authentication block must be set high enough.
@@ -145,49 +145,49 @@ This is determined by the physical environment of the entire network in which th
 
 <br/>
 
-## Threshold Value and Relevancy Efficiency Ratio
+## Threshold Value and Relevance Efficiency Ratio
 
-### Simulated Relevancy Formula
+### Simulated Relevance Formula
 
-![expectedRelevancyFormula](expectedRelevancyFormula.png?raw=true "expectedRelevancyFormula")
+![expectedRelevanceFormula](expectedRelevanceFormula.png?raw=true "expectedRelevanceFormula")
 ```
-r : relevancy
+r : relevance
 c : number of following blocks including the target block ( c > 0 )
 n : sequence number of candidate blocks starting with 0 ( n < c )
 m : maximum number of consecutive bits except the difficulty bits ( m > 0 )
 d : number of difficulty bits ( d > 0 )
-a : relevancy factor ( a > 1 )
+a : relevance factor ( a > 1 )
 ```
 
-### Relevancy Graph
+### Relevance Graph
 
 `d = 8` , `m = 8` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
-![relevancy1](relevancy1.png?raw=true "relevancy1")
+![relevance1](relevance1.png?raw=true "relevance1")
 
 `d = 8` , `m = 12` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
-![relevancy2](relevancy2.png?raw=true "relevancy2")
+![relevance2](relevance2.png?raw=true "relevance2")
 
 <br/>
 
-## Reverse Relevancy and Game Theory
+## Reverse Relevance and Game Theory
 
-### Relevancy Ratio Derivative Formula
+### Relevance Ratio Derivative Formula
 
-![relevancyRatioDerivativeFormula](relevancyRatioDerivativeFormula.png?raw=true "relevancyRatioDerivativeFormula")
+![relevanceRatioDerivativeFormula](relevanceRatioDerivativeFormula.png?raw=true "relevanceRatioDerivativeFormula")
 ```
 d : derivative
 c : number of following blocks including the target block ( c > 0 )
 n : sequence number of candidate blocks starting with 0 ( n < c )
-a : relevancy factor ( a > 1 )
+a : relevance factor ( a > 1 )
 ```
 
-### Relevancy Ratio Derivative Graph
+### Relevance Ratio Derivative Graph
 
 `a ^ (-n / c)` of  `c = 10000` , `a = 2 ^ 2, 2 ^ 4, 2 ^ 8, 2 ^ 16, 2 ^ 32`
 
-![relevancyRatioDerivative](relevancyRatioDerivative.png?raw=true "relevancyRatioDerivative")
+![relevanceRatioDerivative](relevanceRatioDerivative.png?raw=true "relevanceRatioDerivative")
 
 <br/>
 
