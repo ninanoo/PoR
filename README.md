@@ -190,7 +190,7 @@ The effort to find a hash with successive `0`s in the PoW works in the same logi
 The PoW consumes the system resources of each node for a short period of time to find the hash value satisfying the condition.
 In the PoR, the network resources are consumed for a very long time to find the most suitable hash value among the unique hash values owned by the nodes.
 The PoW consumes system resources uniformly in all mining nodes for the entire time of finding the hash value.
-However, in the PoR, the transactions occur only for a short period of time, usually immediately after the block is added, in the entire time
+However, in the PoR, the transactions occur only for a short period of time, usually immediately after the block is added, in the entire time.
 The number of matched bits that can be safely used for each relevancy factor must be determined, and the threshold value determined accordingly.
 To do this, each base value in the PoR must be determined according to the security attributes of the already verified PoW.
 
@@ -288,7 +288,20 @@ All other nodes in the network follow the decision of candidate blocks that are 
 
 ## Double Spending
 
+A malicious reader block may attempt to make double spending by issuing each authentication block to two different networks connected.
+The next leader block has been deterministically elected and receives one of the two authentication blocks first.
+Then, the next leader block that receive this adds its own authentication block to the corresponding block and ignores other authentication blocks issued simultaneously by the previous leader block.
+Depending on the purpose of the operation, it may be disadvantageous to the node of the leader block that has attempted malicious act.
+Although it works deterministically, the last authentication block in the authentication block chain is considered to be an unconfirmed block.
+Authentication is confirmed when one or more authentication blocks follow an authentication block.
+However, this is done very quickly and still works with deterministic algorithms.
 
+Confirmation can be made with only one succeeding authentication block, but it is also possible to use the threshold value for authentication confirmation by using the relevance.
+All the added key blocks contain the sequence number and hash value of the last confirmed authentication block.
+This is yet additional information to increase security, but not necessarily for the current algorithm.
+Instead of the last confirmed authentication block, information can be included from the last authentication block that has not yet been confirmed.
+If the relevance value of the candidate block exceeds the threshold value for authentication confirmation, it can be regarded that the authentication of the corresponding authentication block is confirmed.
+However, this takes a lot of time, and this may be used for a denial of service attack because the information that has not yet been confirmed is included in the candidate blocks to be added.
 
 <br/>
 
