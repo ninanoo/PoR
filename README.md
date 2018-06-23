@@ -377,7 +377,23 @@ It will be a separate project on proprietary information.
 
 ## Compensation for Effort
 
+This algorithm alone does not motivate efforts to compensate.
+The motivation for the effort to reward is more related to proprietary information.
+If the work of the PoW or the stake of the PoS is used as the proprietary information, a lot of effort will be made to obtain them.
+If you own something that is relevant, you can be compensated for it.
+The criteria by which the algorithm operates is relevance, not effort.
+However, relevance may be made from efforts depending on how proprietary information is used.
 
+As evidenced by PoW, competition that requires a lot of effort leads to unnecessary waste of resources.
+So from the time of design, this algorithm has the rules of the games for competition but those that can cause effort are not considered.
+It was designed to have an opportunity to receive compensation even if nodes stick to the basic operation of the algorithm.
+It was also intended to bring a centralized and sophisticated network by several groups to a large number of discrete nodes.
+In this document, relevance is made from hash values with a random distribution in order to avoid unnecessary effort, and the proprietary key is used as proprietary information for this purpose.
+
+The degree of effort can be reduced, but it can not be completely ruled out where there is competition.
+The proprietary key used in this document allows participants to make an effort to maximize profits.
+If very low cost nodes with each owned key are operated by a single participant, a profit proportional to the number of nodes is made.
+However, by minimizing localization through long term consensus, it is not possible to maximize profits as in the case of PoW.
 
 <br/>
 
