@@ -399,7 +399,19 @@ However, by minimizing localization through long term consensus, it is not possi
 
 ## Scalability
 
+The PoR can be used in various network environments.
+For this purpose, it is necessary to adjust the base values such as difficulty, relevance factor, relevance efficiency ratio, threshold, and ratio of leader candidate group having specific authority according to each network environment.
+Not all calculation formulas for each base value have been made yet.
+Now the performance can be measured through simulation using some large values yet.
+If the relationship between each base value is found based on the relevance calculation formula and complete relation formulas are made, dynamically adjusted base values can be used depending on the operating state of the chain.
 
+The security specifications to be considered in the actual implementation of the algorithm depend on the operating environment of the chain and the required security strength.
+If you use proprietary key as proprietary information, you can use SHA-256 and EC-256 for hashing and signature generation, respectively.
+The highest difficulty value that can be obtained at this time is 256, and the appropriate difficulty value should be adopted according to this value.
+The use of dual chain requires more space for issuing one authentication than a consensus algorithm using a single chain.
+It has not yet been fully considered for scalability.
+A method of separating chains into tree form based on the bits prefixed by difficulty can be considered.
+The possibility of sidechain can be considered by issuing the first block so that the fixed front bits are zero consecutive.
 
 <br/>
 
