@@ -307,7 +307,20 @@ However, this takes a lot of time, and this may be used for a denial of service 
 
 ## 51% Attack and Localization
 
+Similar to the PoW, 51% attack and localization problems occur.
+However, these problems can be minimized by using the proprietary information that has an uneven distribution, such as stake in PoS.
+In the case of localization, there are ways to include local information in relevance calculation.
+When a pool of nodes is operated, it is possible to divide the area arbitrarily and to include the local information in the relevance calculation.
+As such, problems can be minimized depending on how the proprietary information used and the relevance are calculated.
 
+However, this algorithm is more resistant than PoW against 51% attack and localization problems. 
+Although it is assumed that about 10000 nodes are required for satisfying the threshold value and one authentication block is generated in the 1 second, it takes about three hours for the newly added candidate block to become the leader block, and the consensus continues throughout that time.
+Since it is not fixed during this time, it is constantly competing with blocks from other regions.
+The same process is performed not only when a block is added to the end of a chain but also when a chain and a chain meet.
+If chain and chain meet and compete, all following blocks are also discarded.
+Even if it win the competition, a chain filled with blocks in one area will still go through the other areas for a long time, and consensus continues over all the blocks in the chain.
+This long time consensus minimizes localization problems and, therefore, has a stronger tolerance for 51% attacks than PoW.
+For this purpose, the base values of the algorithm should be adjusted according to the size of the network so that there is enough consensus time that localization does not occur.
 
 <br/>
 
