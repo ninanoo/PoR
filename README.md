@@ -274,27 +274,46 @@ Therefore, the situation in which the algorithm stops is probabilistically impos
 
 ## Synchronization
 
+Due to the nature of the distributed system, a collision may occur between the distribution of the ledger authentication block by the leader block and the distribution of the exclusion authentication block by the second candidate block.
+When used in large networks, more conflicts may occur compared to other consensus algorithms due to the faster transaction processing of the algorithm.
+This depends on the decision of the third candidate block, but the algorithm specifies the following.
+If the ledger authentication block of the leader block arrives first at the third candidate block, the third candidate block regards it as a normal situation.
+If the exclusion authentication block of the second candidate block arrives first at the third candidate block, the leader block is excluded.
+Alternatively, there is a method in which the third candidate block advertises the collision situation on the network.
+However, this can cause another synchronization problem.
+As with the reverse relevance, all blocks that are approximately `1 / 10` from the beginning of the candidate blocks are responsible for handling synchronization problems.
+All other nodes in the network follow the decision of candidate blocks that are selected in turn.
+
 <br/>
 
 ## Double Spending
+
+
 
 <br/>
 
 ## 51% Attack and Localization
 
+
+
 <br/>
 
 ## Proprietary Information
+
+
 
 <br/>
 
 ## Compensation for Effort
 
+
+
 <br/>
 
 ## Scalability
 
-<br/>
 
+
+<br/>
 
 ###### ※ This algorithm was not designed for the purposes of ICO.<br/>Coin issuance may be required to raise money needed to implement and validate the algorithm.<br/>Even if a coin is issued, it should be aimed at the proof of concept of the algorithm, not profit.<br/>Compensation schemes are needed and follow the methods of other smart contract algorithms.<br/>I hope this algorithm solves many of the problems associated with the blockchain, so that the blockchain technology is activated.
