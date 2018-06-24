@@ -364,9 +364,9 @@ Identification and authentication of the stake will be the same as in PoS.
 However, for self relevance, another way to quantify the consensus and stake in the PoS should be found.
 
 Proprietary information may include memories that can be forgetful or possessions that can be lost, such as passwords or hardware tokens, and this information can be linked with your wallet.
-If you do not remember or lose this information, you can lose your ownership for that block forever.
+If you can not remember this information or you lose it, you can lose your ownership for that block forever.
 As an alternative to this, proprietary information such as biometric information can be used without risk of loss.
-The technologies for using biometric information for identification and authentication are already commercially available, and connecting them to blockchain is not a difficult task.
+The technologies for using biometric information for identification and authentication are already commercially available, and connecting them to the blockchain is not a difficult task.
 However, the use of proprietary information like this may reveal an individual's identity.
 A method such as zero knowledge proof should be used together with the purpose for which the chain is used.
 
