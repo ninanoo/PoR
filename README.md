@@ -363,8 +363,13 @@ The stake of PoS can be used as proprietary information.
 Identification and authentication of the stake will be the same as in PoS.
 However, for self relevance, another way to quantify the consensus and stake in the PoS should be found.
 
-The use of proprietary information may reveal an individual's identity.
+Proprietary information may include memories that can be forgetful or possessions that can be lost, such as passwords or hardware tokens, and this information can be linked with your wallet.
+If you do not remember or lose this information, you can lose your ownership for that block forever.
+As an alternative to this, proprietary information such as biometric information can be used without risk of loss.
+The technologies for using biometric information for identification and authentication are already commercially available, and connecting them to blockchain is not a difficult task.
+However, the use of proprietary information like this may reveal an individual's identity.
 A method such as zero knowledge proof should be used together with the purpose for which the chain is used.
+
 If the proprietary information includes the location information of the node, there is also a possibility of an attack due to the structure of the algorithm.
 It takes a very long consensus time until the newly added block issues the authentication.
 During this time, the attacker can use the location information contained in the block's proprietary information to track the node to issue the next authentication.
