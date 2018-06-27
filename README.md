@@ -33,6 +33,20 @@ High-speed processing is possible enough to generate each authentication block f
 There may be one reward for the participation of a majority of legitimate users, but there are no rewards for the functional behavior of the algorithm.
 
 <br/>
+<br/>
+
+> - **[Structure of Blocks and Chains](#structure-of-blocks-and-chains)**
+> - **[Relevance and Consensus Mechanism](#relevance-and-consensus-mechanism)**
+> - **[Threshold Value and Relevance Efficiency Ratio](#threshold-value-and-relevance-efficiency-ratio)**
+> - **[Reverse Relevance and Game Theory](#reverse-relevance-and-game-theory)**
+> - **[Synchronization](#synchronization)**
+> - **[Double Spending](#double-spending)**
+> - **[51% Attack and Localization](#51-attack-and-localization)**
+> - **[Proprietary Information](#proprietary-information)**
+> - **[Compensation for Effort](#compensation-for-effort)**
+> - **[Scalability](#scalability)**
+
+<br/>
 
 ## Structure of Blocks and Chains
 
