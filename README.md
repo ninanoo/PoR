@@ -218,7 +218,7 @@ To reduce the number of blocks needed to meet the threshold, there is a way to r
 However, they all weaken the deterministic characteristic of the algorithm.
 It may be conceivable to use a larger degree of difficulty to increase the number of matched bits, but this does not match the algorithm's default behavior.
 The algorithm does not place much constraint on adding new block to the chain.
-The lower the level of difficulty, the more blocks are added to the chain more quickly, which makes the reader block able to issue authentication block faster.
+The lower the level of difficulty, the more blocks are added to the chain more quickly, which makes the leader block able to issue authentication block faster.
 It takes a very long time for the newly added block to issue the authentication, and the relevance efficiency ratio becomes sufficiently high during this time.
 Difficulty is not for relevance, only to reduce consumable behavior on the network.
 
@@ -247,7 +247,7 @@ The blocks corresponding to approximately `1 / 10` from the beginning of the can
 
 All previous blocks, that are cumulatively calculated in the reverse relevance, have high self relevance through a sufficient diffusion and convergence process in the network.
 However, if there is a delay in the distribution of the authentication block, the candidate blocks at the back of the chain increase the relevance only by the replacement without addition, so the value of `c` is getting lower and the reverse relevance of the previous blocks is also lowered.
-This causes the reverse relevance to urge the reader block, which is satisfied with the threshold, to issue the authentication block as soon as possible.
+This causes the reverse relevance to urge the leader block, which is satisfied with the threshold, to issue the authentication block as soon as possible.
 From the beginning of the candidate blocks, the blocks corresponding to approximately `1 / 10` are all in the same situation.
 
 The exact number of blocks that have the right to exclude is determined by the relevance factor.
@@ -302,7 +302,7 @@ All other nodes in the network follow the decision of candidate blocks that are 
 
 ## Double Spending
 
-A malicious reader block may attempt to make double spending by issuing each authentication block to two different networks connected.
+A malicious leader block may attempt to make double spending by issuing each authentication block to two different networks connected.
 The next leader block has been deterministically elected and receives one of the two authentication blocks first.
 Then, the next leader block that receive this adds its own authentication block to the corresponding block and ignores other authentication blocks issued simultaneously by the previous leader block.
 Depending on the purpose of the operation, it may be disadvantageous to the node of the leader block that has attempted malicious act.
