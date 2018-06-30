@@ -7,6 +7,8 @@
 ###### ※ I am posting changes or additional issues on [Facebook](https://www.facebook.com/hcmoon82).<br/><br/>I temporarily added to the issue about [attempts to tamper with already confirmed authentication](https://github.com/ninanoo/PoR/issues/4).<br/><br/>There are some issues that can be a problem with [double spending](https://github.com/ninanoo/PoR/issues/3).
 <br/>
 
+<br/>
+
 # PoR ( Proof of Relevance )
 
 ### Blockchain Consensus Algorithm determined by Relevance
