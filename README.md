@@ -103,7 +103,7 @@ However, the first candidate block to issue the next authentication must be uniq
 The first design for synchronization was a locally distributed convergence depending on the addition of each new candidate block.<br/>
 However, the final design has changed to be synchronized with the issuance of the next authentication block.<br/>
 This significantly simplifies the algorithm and makes branched chains to converge more efficiently across the entire network.<br/>
-Each method has advantages and disadvantages, so a mixed form of the two methods may be used for the implementation.<br/>
+Each method has advantages and disadvantages, so a mixed form of the two methods will be used in the implementation.<br/>
 <br/>
 The following shows the candidate chain in each of their nodes for the five participants: James, Alice, Lewis, Maria, and Clark.<br/>
 
@@ -179,8 +179,9 @@ The leader block only collects and synchronizes all ledgers that are subject to 
 The methods used in BFT(byzantine fault tolerance) and DAG(directed acyclic graph) were partially included.<br/>
 That approach divides the single authentication chain into a large number of parallelized chains, and increases the throughput of authentication issuance.<br/>
 However, it makes many parts of the current algorithm redesigned for synchronization, and increases a single response time until authentication for one ledger is completed.<br/>
-So, in the final design, no authentication is issued in parallel.<br/>
+So, in the first implementation, no authentication is issued in parallel.<br/>
 Authentication is always issued only by a single node, but the single authentication chain is operated in multiple chains, which are parallelized and distributed, to provide space scalability.<br/>
+However, at the end of this section, the structure for parallelizing the issuance of authentication, which is still under design, will be briefly introduced.<br/>
 <br/>
 <br/>
 
@@ -237,7 +238,7 @@ To act as a currency, the value is being measured and stored as specific data, a
 However, even though there is no concrete medium called a token, there are technological methodologies that can make compensation possible.<br/>
 Before money emerged in the real world, there had been barter exchanges to exchange value synchronously, and there had been promises to exchange labor with each other, which operate asynchronously.<br/>
 However, the most efficient methodology for managing value in the real world is money, and in the blockchain, it is a token or a coin.<br/>
-There are not enough social and economic knowledge to say that functioning as a currency or having similar effect is right or wrong, but it is a necessary approach to be operated as a public blockchain.<br/>
+There are not enough social and economic knowledge to say that functioning as a currency or having similar effect is right or wrong, but at least that is still a necessary approach to be operated as a public blockchain.<br/>
 The relevant structural parts, which are for issuing tokens in this algorithm, are not significantly different from the structural parts of other blockchain algorithms.<br/>
 However, this algorithm does not include any direct structural design for compensation, but instead interfaces are provided for interworking with the token systems of the upper layer.<br/>
 This last section's contents only are not a summary of the overall architecture design that has been completed, but rather a direction that will be applied to this algorithm.<br/>
