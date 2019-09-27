@@ -57,7 +57,7 @@ In PoW, consensus is made on only one block to be added each time.<br/>
 However, in this algorithm, consensus continues on all candidate blocks managed as another chain.<br/>
 To find one block, a number of consensus go on as distributed across the entire network, and until one authentication can be issued, it continues to converge as consensus on consensus.<br/>
 To issue one authentication, there is not just one consensus but a large number of distributed consensus over the entire network space and entire time while it is a candidate block.<br/>
-In addition, various techniques using the correlation of time and space are used, and the localization is gradually reduced by these techniques.<br/>
+And then various techniques using the correlation of time and space are used, and the localization is also gradually reduced by these techniques.<br/>
 With respect to all the consensus to be able to issue one authentication and the actual issuance of that authentication, the two actions are proceeded separately over a long period of time.<br/>
 This allows the algorithm to be modified without chain's fork, and the modifications are gradually reflected in the entire network.
 
@@ -98,35 +98,35 @@ So here is a brief introduction to features that have not yet been documented.
 <br/>
 <br/>
 
-This algorithm allows the candidate chain to branch so that the chain is formed into a tree structure, where the occurrence of a new branch exponentially increases at the back of the chain.<br/>
+This algorithm allows the candidate chain to branch so that the chain is formed into a tree structure.<br/>
 However, the first candidate block to issue the next authentication must be unique, and for this, synchronization of the candidate chain proceeds over a long period of time corresponding to the threshold value.<br/>
 The first design for synchronization was a locally distributed convergence depending on the addition of each new candidate block.<br/>
 However, the final design has changed to be synchronized with the issuance of the next authentication block.<br/>
 This significantly simplifies the algorithm and makes branched chains to converge more efficiently across the entire network.<br/>
 Each method has advantages and disadvantages, so a mixed form of the two methods will be used in the implementation.<br/>
 <br/>
-The following shows the candidate chain in each of their nodes for the five participants: James, Alice, Lewis, Maria, and Clark.<br/>
+The following shows the candidate chain in each of their nodes for the five owners: James, Alice, Lewis, Maria, and Clark.<br/>
 
 ```
-James  {00000} ~ {67372} - [67373]           ~ (77292)
-Alice  {00000} ~ {67372} - (67373) ~ [75428] ~ (77362)
-Lewis  {00000} ~ {67372} - (67373) ~ [74593] ~ (77290)
-Maria  {00000} ~ {67372} - (67373) ~ [77285] ~ (77328)
-Clark  {00000} ~ {67372} - (67373) ~ [77285] ~ (77311)
+James  {0} ~ {67372} - [67373]           ~ (77372)
+Alice  {0} ~ {67372} - (67373) ~ [75428] ~ (77372)
+Lewis  {0} ~ {67372} - (67373) ~ [74593] ~ (77372)
+Maria  {0} ~ {67372} - (67373) ~ [77285] ~ (77372)
+Clark  {0} ~ {67372} - (67373) ~ [77285] ~ (77372)
 ```
 
 The braces and parentheses correspond to the authentication block and the candidate block, respectively, and the square brackets are the candidate block issued by each node.<br/>
 The block header of this algorithm contains a sequence number, and only the sequence number is shown in the example above.<br/>
 The sequence number of the first block is zero.<br/>
 So far, up to 67372 authentication blocks have been issued and synchronized on all nodes.<br/>
-The sequence number of the leader block, which is owned by James, is 67373, and the block has been synchronized on all nodes.<br/>
-The other nodes have published one candidate block in their chain branch, respectively.<br/>
+The above candidate chains consist of 10000 candidate blocks, and the current leader block is block 67373<br/>
+The above five owners have published one candidate block in their chain branch, respectively.<br/>
 The five candidate chains above are the different branches of the chain, which are randomly selected from the entire candidate chain, so the last added candidate blocks are also different.<br/>
 <br/>
 The following shows the chain branches for only the above five nodes among the entire candidate chains branched in a tree form.<br/>
 
 ```
-{00000}
+  {0}
    :
 {67372}
    |
@@ -144,11 +144,7 @@ The following shows the chain branches for only the above five nodes among the e
    :       :       |       |       |
    :       :    (77285) [77285] [77285]
    :       :       :       :       :
-   :       :    (77290)    :       :
-(77292)    :               :       :
-           :               :    (77311)
-           :            (77328)
-        (77362)
+(77372) (77372) (77372) (77372) (77372)
 
  James   Alice   Lewis   Maria   Clark
 ```
@@ -156,10 +152,10 @@ The following shows the chain branches for only the above five nodes among the e
 As we can see above, all other nodes except James own each candidate block corresponding to the sequence numbers where the chain was branched.<br/>
 The branched chains are synchronized by these blocks which caused each branching.<br/>
 James, who owns the current leader block of sequence number 67373, uses this block to issue the next authentication block.<br/>
-At this time, the entire header information, which corresponds to all following blocks from 67374 to 77292, is also bundled together with the authentication block.<br/>
+At this time, the entire header information, which corresponds to all following blocks from 67373 to 77372, is also bundled together with the authentication block.<br/>
 James's candidate chain is used as a reference chain for synchronization of branched chains.<br/>
 The header of any candidate block does not yet contain new ledgers and their authentication information, so it does not exceed 100 bytes.<br/>
-It was assumed that the candidate chain will be maintained at a number of approximately 10000 candidate blocks, so the total header information will not exceed 1 MB.<br/>
+The information about 10000 blocks, which are the total candidate blocks in any one node, does not exceed 1MB.<br/>
 Along with the new authentication block, the information of the reference chain also arrives at all other nodes in unspecified order.<br/>
 Each of those nodes compares the received reference chain with its own candidate chain.<br/>
 When any branched block is found in comparison with the reference chain, the nodes compare the cumulative relevance of those two blocks for each branch.<br/>
@@ -199,11 +195,11 @@ However, in the current final design different from the first design, the number
 In an extreme experiment, the exclusion of the unique leader block can proceed simultaneously in different candidate blocks which have the same sequence number in each branched candidate chain, and this can be seen as an uncertainty in terms of the entire network.<br/>
 However, in this algorithm, branching of a chain is used as a favorable function, and all functions operate recursively on each branch.<br/>
 Uncertainty makes attacks more difficult from the whole point of view, but candidate blocks operate probabilistically based on their own branch.<br/>
+In addition, in the first design, an indirect method of comparing [reverse relevance](https://github.com/ninanoo/PoR/blob/master/BasicConsensus.md#reverse-relevance-and-game-theory) was used to constrain time.<br/>
+However, from the design so far, a direct time base is used, which is similar to the average transmission time introduced in [a recent document](https://github.com/ninanoo/PoR/blob/master/AdditionOfTheNextCandidateBlock.md).<br/>
 Those time constraint and exclusion rule are equally applicable to the other two types of critical blocks that have not yet been documented.<br/>
 The first candidate block of each branch is responsible for synchronizing the branched candidate chains.<br/>
 The first candidate block of each distro is responsible for synchronizing the distributed authentication chains.<br/>
-A probabilistically estimated value is used as a time base for the exclusion in both those cases.<br/>
-To this end, [a recent document](https://github.com/ninanoo/PoR/blob/master/AdditionOfTheNextCandidateBlock.md) has shown how to get the average transmission time over the entire network.<br/>
 In the three cases so far, the time bases for exclusion differ from each other, but these time-related rules make the chain work permanently.
 
 <br/>
@@ -234,7 +230,7 @@ Depending on the service characteristics of the upper layer, smart contracts wit
 <br/>
 In order for participants' efforts to be compensated, it may not be necessary to have a token system, so its component was not labelled in the diagram above.<br/>
 Current tokens are functioning as a means of measuring, transferring and storing the value corresponding to the effort.<br/>
-To act as a currency, the value is being measured and stored as specific data, and is being exchanged for commodity money.<br/>
+To operate as a valuable thing, it is being measured and stored as specific data, and is being exchanged for commodity money.<br/>
 However, even though there is no concrete medium called a token, there are technological methodologies that can make compensation possible.<br/>
 Before money emerged in the real world, there had been barter exchanges to exchange value synchronously, and there had been promises to exchange labor with each other, which operate asynchronously.<br/>
 However, the most efficient methodology for managing value in the real world is money, and in the blockchain, it is a token or a coin.<br/>
